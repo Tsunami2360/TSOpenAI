@@ -1,2 +1,2 @@
 # TSOpenAI
-Simple OpenAI API POST request in TypeScript
+Just a simple OpenAI API POST request, written in TypeScript  
