@@ -14,11 +14,14 @@ async function start() {
   //console.log(response);
 
   const ares = await openai.createImage({
-    prompt: "futuristic champignon",
-    n: 1,
+    prompt: "deutsche rollerskates",
+    n: 3,
     size: "1024x1024",
   });
-  console.log(ares.data.data[0].url);
+  ares.data.data.forEach(e => {
+    console.log(e);
+  });
+  //console.log(ares.data.data[0].url);
 }
 start();
 
