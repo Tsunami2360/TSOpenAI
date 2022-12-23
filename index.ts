@@ -2,7 +2,7 @@ import { Configuration, OpenAIApi } from "openai";
 import * as dotenv from "dotenv";
 dotenv.config();
 //import fetch from "node-fetch";
-import fetch from 'isomorphic-fetch';
+import fetch from "isomorphic-fetch";
 
 async function start() {
   const configuration = new Configuration({
@@ -13,9 +13,13 @@ async function start() {
   const response = await openai.listEngines();
   //console.log(response);
 
+  let topic = "Mercedes class G";
+  let amount = 3;
+  console.group(topic, amount);
+
   const ares = await openai.createImage({
-    prompt: "deutsche rollerskates",
-    n: 3,
+    prompt: topic,
+    n: amount,
     size: "1024x1024",
   });
   ares.data.data.forEach(e => {
