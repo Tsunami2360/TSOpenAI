@@ -3,18 +3,25 @@ import * as dotenv from "dotenv";
 dotenv.config();
 //import fetch from "node-fetch";
 import fetch from "isomorphic-fetch";
+import * as readline from "readline";
 
-async function start() {
+let rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+async function start(topic: string) {
+
   const configuration = new Configuration({
-    organization: process.env.OPENAI_ORGANIZATION_KEY,
+    organization: process.env.OPENAI_ORGANIZATION_ID,
     apiKey: process.env.OPENAI_API_KEY,
   });
   const openai = new OpenAIApi(configuration);
   const response = await openai.listEngines();
   //console.log(response);
 
-  let topic = "Mercedes class G";
   let amount = 3;
+
   console.group(topic, amount);
 
   const ares = await openai.createImage({
@@ -27,7 +34,11 @@ async function start() {
   });
   //console.log(ares.data.data[0].url);
 }
-start();
+
+rl.question("Topic? ", (topic) => {
+  start(topic);
+  rl.close();
+});
 
 async function post() {
   try {
