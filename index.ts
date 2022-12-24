@@ -20,7 +20,7 @@ async function start(topic: string) {
   const response = await openai.listEngines();
   //console.log(response);
 
-  let amount = 3;
+  let amount: number = 3;
 
   console.group(topic, amount);
 
@@ -35,7 +35,7 @@ async function start(topic: string) {
   //console.log(ares.data.data[0].url);
 }
 
-rl.question("Topic? ", (topic) => {
+rl.question("Topic? ", (topic: string) => {
   start(topic);
   rl.close();
 });
